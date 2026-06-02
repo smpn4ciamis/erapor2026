@@ -1,314 +1,429 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LINK E-RAPOR SMPN 4 CIAMIS</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
+  
   <style>
-    header {
-      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('bg.jpg') no-repeat center center;
+    /* Global Styles */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      transition: background-color 0.4s ease, color 0.4s ease;
+      background-color: #f8fafc;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* --- ANIMASI KEYFRAMES --- */
+    @keyframes slideDownIn {
+      from { transform: translateY(-60px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes bounceArrow {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-12px); }
+      60% { transform: translateY(-6px); }
+    }
+
+    @keyframes blinkFade {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    /* Hero Section (Tampilan Penuh Pertama) */
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(15, 32, 67, 0.85), rgba(13, 110, 253, 0.6)), url('bg.jpg') no-repeat center center;
       background-size: cover;
+      background-attachment: fixed; /* Efek Parallax Ringan */
       color: white;
-      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-      padding: 80px 0;
-    }
-  .btn-disabled {
-    pointer-events: none;
-    opacity: 0.6;
-    background-color: #adb5bd !important;
-    border-color: #adb5bd !important;
-    color: #212529 !important;
-    box-shadow: none !important;
-  }
-    .btn-outline-primary {
-      transition: all 0.3s ease, transform 0.2s ease-in-out;
-      border-radius: 50px;
-      font-weight: 600;
-      box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
-    }
-
-    .btn-outline-primary:hover {
-      background-color: #0d6efd;
-      color: white;
-      transform: scale(1.1) translateY(-5px);
-      box-shadow: 0 0 20px rgba(0, 123, 255, 0.8);
-    }
-
-    .btn-animated {
-      animation: fadeIn 1s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      0% {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .marquee-wrapper {
+      text-align: center;
+      padding: 40px 20px;
       position: relative;
+    }
+
+    .hero-header {
+      animation: slideDownIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .hero-header img {
+      max-height: 120px;
+      filter: drop-shadow(0px 8px 16px rgba(0,0,0,0.3));
+    }
+
+    .hero-header h2 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 15px;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+
+    .hero-header p {
+      font-size: 1.25rem;
+      font-weight: 300;
+      letter-spacing: 1px;
+      color: #e2e8f0;
+    }
+
+    /* Glassmorphism Countdown */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 24px;
+      padding: 25px 40px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+      margin-top: 30px;
+      animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+      opacity: 0; /* Mulai dari transparan sebelum animasi berjalan */
+    }
+
+    .countdown-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #60a5fa;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      animation: blinkFade 2.5s infinite;
+    }
+
+    .countdown-numbers {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #ef4444;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Tombol Slide ke Bawah */
+    .scroll-down-btn {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      text-decoration: none;
+      font-size: 0.9.rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+      opacity: 0;
+      transition: color 0.3s ease;
+    }
+
+    .scroll-down-btn:hover {
+      color: #60a5fa;
+    }
+
+    .scroll-down-btn i {
+      display: block;
+      font-size: 2rem;
+      margin-top: 5px;
+      animation: bounceArrow 2s infinite;
+    }
+
+    /* --- SECTION KONTEN BAWAH --- */
+    .main-content-section {
+      padding: 80px 0;
+      background-color: #f8fafc;
+    }
+
+    /* Marquee Wrapper */
+    .marquee-wrapper {
+      background: linear-gradient(90deg, #1e40af, #3b82f6);
+      color: white;
+      padding: 14px 0;
+      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.15);
+      border-radius: 16px;
       overflow: hidden;
-      background-color: #f8f9fa;
-      padding: 10px 0;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 50px;
     }
 
     .marquee-content {
       display: inline-block;
       white-space: nowrap;
-      animation: scroll-left 20s linear infinite;
-      font-size: 16px;
-      color: #007bff;
+      animation: scroll-left 25s linear infinite;
+      font-size: 15px;
+      font-weight: 500;
       margin: 0;
     }
 
     @keyframes scroll-left {
-      0% {
-        transform: translateX(100%);
-      }
-
-      100% {
-        transform: translateX(-100%);
-      }
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
     }
 
-    h2 {
-      font-size: 2rem;
-      font-weight: 500;
-      margin-top: 20px;
+    /* Card Akses Utama */
+    .content-card {
+      background: white;
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      border: 1px solid #e2e8f0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .content-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Tombol Utama */
+    .btn-access {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      padding: 18px 35px;
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
     }
 
-    .btn {
-      font-size: 1.1rem;
-      padding: 15px 25px;
+    .btn-access:hover {
+      background: linear-gradient(135deg, #1d4ed8, #1e40af);
+      color: white;
+      transform: scale(1.03);
+      box-shadow: 0 15px 25px rgba(37, 99, 235, 0.4);
     }
 
-    @media (max-width: 768px) {
-      .btn {
-        padding: 12px 20px;
-        font-size: 1rem;
-      }
+    .btn-disabled {
+      pointer-events: none;
+      opacity: 0.5;
+      background: #cbd5e1 !important;
+      color: #64748b !important;
+      box-shadow: none !important;
     }
 
+    /* Dark Mode Theme */
+    body.bg-dark {
+      background-color: #0f172a !important;
+      color: #f1f5f9;
+    }
 
-    .popIn {
-  animation: popIn 0.6s ease-in-out;
-}
+    body.bg-dark .main-content-section {
+      background-color: #0f172a !important;
+    }
+
+    body.bg-dark .content-card {
+      background: #1e293b;
+      border-color: #334155;
+      color: #f1f5f9;
+    }
+
+    body.bg-dark .modal-content {
+      background-color: #1e293b;
+      color: #f1f5f9;
+      border: 1px solid #334155;
+    }
+
+    body.bg-dark .modal-header { border-bottom: 1px solid #334155; }
+    body.bg-dark .modal-footer { border-top: 1px solid #334155; }
   </style>
 </head>
 
 <body>
 
-  <!-- Toast Notification -->
-  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-    <div id="liveToast" class="toast align-items-center text-bg-primary border-0" role="alert">
+  <div class="position-fixed top-0 end-0 p-3" style="z-index: 1060;">
+    <button class="btn btn-sm btn-light shadow rounded-pill px-3 fw-medium" onclick="toggleDarkMode()" id="darkModeBtn">
+      🌙 Dark Mode
+    </button>
+  </div>
+
+  <section class="hero-section">
+    <div class="hero-header">
+      <img src="logo_smp_negeri_4_ciamis.png" alt="Logo SMPN 4 Ciamis">
+      <h2>E-Rapor</h2>
+      <h2>SMPN 4 Ciamis</h2>
+      <p class="mt-2">Tahun Pelajaran 2025/2026</p>
+    </div>
+
+    <div class="glass-card" id="countdown-box">
+      <div class="countdown-title mb-2">⏳ Pencetakan e-Rapor Dimulai Dalam:</div>
+      <div id="countdown" class="countdown-numbers">Memuat Waktu...</div>
+    </div>
+
+    <a href="#akses-konten" class="scroll-down-btn">
+      Geser ke bawah untuk akses link
+      <i class="bi bi-chevron-down"></i>
+    </a>
+  </section>
+
+  <section class="main-content-section" id="akses-konten">
+    <div class="container">
+      
+      <div class="marquee-wrapper">
+        <p class="marquee-content">
+          💡 <strong>Petunjuk Login:</strong> Gunakan NIP untuk PNS/PPPK dan nama tanpa spasi untuk honorer (contoh: muhamadrafi). Password standar: <code>@dikdasmen123456*</code>. Selamat bekerja dan jaga validitas data!
+        </p>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-8 text-center">
+          <div class="content-card">
+           
+            <p class="text-muted mb-4">Silakan klik tombol di bawah ini untuk menuju halaman erapor.</p>
+            
+            <a href="https://emissions-invite-status-kiss.trycloudflare.com/"
+               id="linkErapor1"
+               class="btn btn-access btn-lg px-5 w-100 py-3"
+               target="_blank"
+               rel="noopener noreferrer">
+               <i class="bi bi-rocket-takeoff-fill"></i> Akses Link E-Rapor Utama
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title" id="infoModalLabel"><i class="bi bi-info-circle-fill"></i> <strong>Pemberitahuan Sistem</strong></h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" style="line-height: 1.7;">
+          Yth. Bapak/Ibu Guru SMPN 4 Ciamis,<br><br>
+          Proses pencetakan e-Rapor kelas 9 akan dimulai pada hari <strong>Senin</strong>,
+tanggal <strong>8 Juni 2026</strong> pukul <strong>08.00 WIB</strong>.
+Mohon kepada Bapak/Ibu Guru untuk memastikan seluruh input nilai rapor dan
+kelengkapan data lainnya telah diselesaikan sebelum proses pencetakan dimulai.
+
+Terima kasih.
+          <hr>
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="small text-muted">Admin</span>
+            <span class="badge bg-secondary">d@r91</span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary px-4 rounded-pill" data-bs-dismiss="modal">Saya Mengerti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1050">
+    <div id="liveToast" class="toast align-items-center text-bg-dark border-0 shadow-lg" role="alert">
       <div class="d-flex">
-        <div class="toast-body">
-          Jangan lupa input nilai sebelum 8 Juni 2026!
+        <div class="toast-body fw-medium">
+          📢 Batas akhir pengisian: 8 Juni 2026!
         </div>
         <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
       </div>
     </div>
   </div>
 
-  <!-- Header -->
-  <header>
-    <div class="container text-center">
-      <img src="logo_smp_negeri_4_ciamis.png" alt="Logo SMPN 4 Ciamis" style="max-height: 100px;" class="mb-3">
-      <h2>E-RAPOR</h2>
-      <h2>SMPN 4 CIAMIS</h2>
-      <p>TAHUN PELAJARAN 2025/2026</p>
-    </div>
-  </header>
-
-<!-- Countdown Section -->
-<div class="container text-center mt-4">
-  <div class="p-4 bg-light border border-warning rounded-4 shadow-lg d-inline-block" id="countdown-box" style="animation: fadeInScale 1s ease-in-out;">
-    <h5 class="text-warning-emphasis fw-bold mb-3 animated-text">⏳ Pencetakan e-Rapor dimulai dalam:</h5>
-    <div id="countdown" class="fs-4 text-danger-emphasis fw-bold countdown-numbers"></div>
-  </div>
-</div>
-
-<style>
-  @keyframes fadeInScale {
-    0% {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  @keyframes blinkFade {
-    0%, 100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.6;
-    }
-  }
-
-  .animated-text {
-    animation: blinkFade 2s infinite;
-  }
-
-  .countdown-numbers {
-    animation: popIn 0.6s ease-in-out;
-    transition: transform 0.3s ease, color 0.3s ease;
-  }
-
-  @keyframes popIn {
-    0% {
-      transform: scale(0.95);
-      opacity: 0;
-    }
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
-</style>
-
-
-
-
-  <!-- Dark Mode Toggle -->
-  <div class="text-end p-3">
-    <button class="btn btn-sm btn-outline-secondary" onclick="toggleDarkMode()">🌙 Dark Mode</button>
-  </div>
-
-  <!-- Marquee -->
-  <div class="marquee-wrapper">
-    <p class="marquee-content">Gunakan username: NIP untuk PNS/PPPK dan nama tanpa spasi untuk honorer (contoh: muhamadrafi), password: @dikdasmen123456*. <strong>Selamat bekerja!</strong></p>
-  </div>
-
-  <!-- Modal -->
-  <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="infoModalLabel"><strong>Informasi</strong></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-Proses pencetakan e-Rapor akan dimulai pada hari <strong>Senin</strong>,
-tanggal <strong>8 Juni 2026</strong> pukul <strong>08.00 WIB</strong>.
-Mohon kepada Bapak/Ibu Guru untuk memastikan seluruh input nilai rapor dan
-kelengkapan data lainnya telah diselesaikan sebelum proses pencetakan dimulai.
-
-Terima kasih.
-
-<br><br>
-<strong>Best regards,</strong><br>
-Admin eRapor - d@r91
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Link Section -->
-  <div class="row justify-content-center mt-5">
-  <div class="col-12 col-md-4 mb-3">
-<a href="https://emissions-invite-status-kiss.trycloudflare.com/"
-   id="linkErapor1"
-   class="btn btn-outline-primary w-100 btn-animated"
-   target="_blank"
-   rel="noopener noreferrer">
-   LINK E-RAPOR 1
-</a>
-
-  </div>
-</div>
-</div>
-  <!-- Footer -->
-  <footer class="text-center mt-5 py-3 bg-light">
-    <small>&copy; 2025 SMPN 4 Ciamis</small>
+  <footer class="text-center py-4 text-muted bg-light border-top" style="font-size: 0.85rem;">
+    &copy; 2026 SMP Negeri 4 Ciamis. All Rights Reserved. Managed by Administrator IT.
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
  
   <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const countdownEl = document.getElementById("countdown");
-  const linkErapor = document.getElementById("linkErapor");
+    // Logika Countdown Terpusat
+    document.addEventListener('DOMContentLoaded', () => {
+      const countdownEl = document.getElementById("countdown");
+      const linkErapor = document.getElementById("linkErapor1");
 
-  const targetDate = new Date("June 8, 2026 08:00:00").getTime();
+      // Menyetel target waktu penutupan
+      const targetDate = new Date("June 8, 2026 08:00:00").getTime();
 
-  function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = targetDate - now;
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
 
-    if (distance <= 0) {
-      countdownEl.innerHTML = "🔒 Pencetakan telah dimulai<br><small>Link e-Rapor dinonaktifkan</small>";
+        if (distance <= 0) {
+          countdownEl.innerHTML = "🔒 Waktu Pengisian Habis (Proses Cetak)";
+          countdownEl.style.color = "#ef4444";
 
-      // DISABLE LINK
-      linkErapor.classList.add("btn-disabled");
-      linkErapor.removeAttribute("href");
-      linkErapor.innerHTML = "LINK E-RAPOR DITUTUP";
+          // Blokir akses tombol jika melewati batas waktu
+          if (linkErapor) {
+            linkErapor.classList.add("btn-disabled");
+            linkErapor.removeAttribute("href");
+            linkErapor.innerHTML = "<i class='bi bi-lock-fill'></i> LINK E-RAPOR DITUTUP";
+          }
+          clearInterval(interval);
+        } else {
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      clearInterval(interval);
-    } else {
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          countdownEl.innerHTML = `
+            <span class="text-warning">${days} Hari</span> : 
+            <span>${hours} Jam</span> : 
+            <span>${minutes} Menit</span> : 
+            <span>${seconds} Detik</span>
+          `;
+        }
+      }
 
-      countdownEl.innerHTML = `
-        <span style="color:#dc3545">${days} hari</span>
-        ${hours} jam
-        ${minutes} menit
-        ${seconds} detik
-      `;
+      updateCountdown();
+      const interval = setInterval(updateCountdown, 1000);
+    });
+
+    // Otomatisasi komponen pop-up Bootstrap (Modal & Toast) saat selesai loading
+    document.addEventListener('DOMContentLoaded', () => {
+      // Jalankan Modal Selamat Datang/Peringatan
+      const infoModal = new bootstrap.Modal(document.getElementById('infoModal'));
+      infoModal.show();
+
+      // Jalankan Toast Reminder kecil di pojok bawah
+      const toastEl = document.getElementById('liveToast');
+      const toast = new bootstrap.Toast(toastEl, { delay: 6000 });
+      setTimeout(() => toast.show(), 1500); // Muncul tipis setelah modal terbuka
+    });
+
+    // Fitur Dark Mode Fleksibel
+    function toggleDarkMode() {
+      const body = document.body;
+      const btn = document.getElementById("darkModeBtn");
+      body.classList.toggle("bg-dark");
+      
+      if (body.classList.contains("bg-dark")) {
+        btn.innerHTML = "☀️ Light Mode";
+        btn.classList.replace("btn-light", "btn-dark");
+      } else {
+        btn.innerHTML = "🌙 Dark Mode";
+        btn.classList.replace("btn-dark", "btn-light");
+      }
     }
-  }
-
-  updateCountdown();
-  const interval = setInterval(updateCountdown, 1000);
-});
-</script>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const toastEl = document.getElementById('liveToast');
-  const toast = new bootstrap.Toast(toastEl, { delay: 7000 });
-  toast.show();
-});
-</script>
-
-
-  <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const infoModal = new bootstrap.Modal(document.getElementById('infoModal'));
-  infoModal.show();
-});
-</script>
-
-<script>
-function toggleDarkMode() {
-  document.body.classList.toggle("bg-dark");
-  document.body.classList.toggle("text-light");
-
-  document.querySelectorAll(".bg-light").forEach(el => {
-    el.classList.toggle("bg-dark");
-  });
-}
-</script>
+  </script>
 
 </body>
-
 </html>
